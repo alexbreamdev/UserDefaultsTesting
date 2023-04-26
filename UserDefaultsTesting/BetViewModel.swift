@@ -32,6 +32,11 @@ class BetViewModel: ObservableObject {
         saveBets()
     }
     
+    func deleteBet(at offsets: IndexSet) {
+        bets.remove(atOffsets: offsets)
+        saveBets()
+    }
+    
     func loadBets() -> [BetModel]? {
         guard let data = UserDefaults.standard.data(forKey: Bet.saveBet.rawValue) else {
             print("Couldn't load data")

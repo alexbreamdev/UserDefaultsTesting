@@ -16,6 +16,7 @@ struct ContentView: View {
                 ForEach(betVM.bets) { bet in
                     LabeledContent(bet.team, value: "\(bet.oddBet)")
                 }
+                .onDelete(perform: betVM.deleteBet)
             }
             .navigationTitle("Bet List")
             .toolbar {
