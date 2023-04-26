@@ -39,7 +39,6 @@ struct ContentView: View {
             }
             .sheet(isPresented: $showAddList) {
                 AddBetView()
-                    .environmentObject(betVM)
             }
         }
     }
