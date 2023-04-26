@@ -19,7 +19,7 @@ class BetViewModel: ObservableObject {
         self.bets = loadBets() ?? []
     }
     
-    func saveBets() {
+    private func saveBets() {
         if let saveData = try? JSONEncoder().encode(bets) {
             UserDefaults.standard.set(saveData, forKey: Bet.saveBet.rawValue)
         } else {
@@ -37,7 +37,7 @@ class BetViewModel: ObservableObject {
         saveBets()
     }
     
-    func loadBets() -> [BetModel]? {
+    private func loadBets() -> [BetModel]? {
         guard let data = UserDefaults.standard.data(forKey: Bet.saveBet.rawValue) else {
             print("Couldn't load data")
             return nil
