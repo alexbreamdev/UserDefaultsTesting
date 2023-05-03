@@ -12,6 +12,7 @@ struct AddBetView: View {
     @Environment(\.dismiss) var dismiss
     @State private var team: String = ""
     @State private var odds: String = "0"
+    @State private var winBet: Bool = false
     var body: some View {
         VStack {
             Text("Add Bet")
@@ -23,6 +24,9 @@ struct AddBetView: View {
                 .textFieldStyle(.roundedBorder)
                 .keyboardType(.decimalPad)
             
+            Toggle(isOn: $winBet) {
+                Text("Bet Won")
+            }
             Button {
                 addBet()
                 dismiss()
@@ -37,7 +41,7 @@ struct AddBetView: View {
     
     private func addBet() {
         if !team.isEmpty {
-            let bet = BetModel(team: team, oddBet: Double(odds) ?? 0.0)
+            let bet = BetModel(team: team, oddBet: Double(odds) ?? 0.0, win: winBet)
             betVM.addBet(bet: bet)
         }
     }

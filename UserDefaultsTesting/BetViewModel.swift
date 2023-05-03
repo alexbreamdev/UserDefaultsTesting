@@ -6,13 +6,27 @@
 //
 
 import Foundation
+import Combine
 
 class BetViewModel: ObservableObject {
     
     @Published var bets: [BetModel] = []
+    @Published var winCount: Int = 0
+    var subscriptions = Set<AnyCancellable>()
     
     init() {
         getBets()
+        
+        $bets
+            .map { bet in
+                   bet.filter { element in
+                       element.win == true
+                   }
+                }
+            .sink {[weak self ] value in
+                self?.winCount = value.count
+            }
+            .store(in: &subscriptions)
     }
     
     func getBets() {

@@ -12,8 +12,17 @@ struct UserDefaultsTestingApp: App {
     @StateObject private var betVM = BetViewModel()
     var body: some Scene {
         WindowGroup {
-            ContentView()
-                .environmentObject(betVM)
+            TabView {
+                ContentView()
+                    .tabItem {
+                        Text("Bet List")
+                    }
+                WinView()
+                    .tabItem {
+                        Text("Win count")
+                    }
+            }
+            .environmentObject(betVM)
         }
     }
 }

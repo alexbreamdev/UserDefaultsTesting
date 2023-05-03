@@ -15,6 +15,7 @@ struct ContentView: View {
             List {
                 ForEach(betVM.bets) { bet in
                     LabeledContent(bet.team, value: "\(bet.oddBet)")
+                    Text("isWin \(bet.win.description)")
                 }
                 .onDelete(perform: betVM.deleteBet)
             }

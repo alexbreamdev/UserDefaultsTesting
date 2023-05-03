@@ -12,6 +12,7 @@ struct BetModel: Identifiable, Codable {
     var id = UUID().uuidString
     var team: String
     var oddBet: Double
+    var win: Bool
 }
 
 enum Bet: String {
